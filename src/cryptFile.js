@@ -24,7 +24,7 @@ function encryptFile(source, dest, secret) {
   });
 }
 
-function decipherFile(source, dest, secret, callback) {
+function decryptFile(source, dest, secret, callback) {
   console.log('Deciphering file: ', source);
   fs.readFile(source, 'utf8', (err, data) => {
     if (err) return callback(err);

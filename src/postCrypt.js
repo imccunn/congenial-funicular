@@ -1,10 +1,10 @@
 
-import { decipherFile } from './cryptFile';
+import { decryptFile } from './cryptFile';
 import { mapRowsToObjs } from './mapData';
 import { exec } from 'child_process';
 
 function postDecipher(source, dest, secret, searchTerm, searchTerm2) {
-  decipherFile(source, dest, secret, (err, data) => {
+  decryptFile(source, dest, secret, (err, data) => {
     if (err) return console.log(err);
     let map = mapRowsToObjs(data);
     let found = [];
