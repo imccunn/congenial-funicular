@@ -3,7 +3,7 @@
 import fs from 'fs';
 
 import { encryptFile, decipherFile } from './src/cryptFile';
-import { postDecipher } from './src/postCrypt';
+import { postDecrypt } from './src/postCrypt';
 
 const args = process.argv;
 const secret = fs.readFileSync('./.secret', 'utf8');
@@ -19,7 +19,7 @@ const DEC = '-d';
 switch (actOpt) {
   case ENC : encryptFile(source, dest, secret);
     break;
-  case DEC : postDecipher(source, dest, secret, searchTerm, searchTerm2);
+  case DEC : postDecrypt(source, dest, secret, searchTerm, searchTerm2);
     break;
   default : throw new Error('Bad opts');
     break;

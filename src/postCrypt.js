@@ -3,7 +3,7 @@ import { decryptFile } from './cryptFile';
 import { mapRowsToObjs } from './mapData';
 import { exec } from 'child_process';
 
-function postDecipher(source, dest, secret, searchTerm, searchTerm2) {
+function postDecrypt(source, dest, secret, searchTerm, searchTerm2) {
   decryptFile(source, dest, secret, (err, data) => {
     if (err) return console.log(err);
     let map = mapRowsToObjs(data);
@@ -29,13 +29,12 @@ function postDecipher(source, dest, secret, searchTerm, searchTerm2) {
    console.log('> ', found.length !== 1 ? 'unable to target account' : `${found[0].pw} -- ${found[0].email}`);
    setTimeout(function() {
       exec('clear && exit', (err, stdo, stde) => {
-        if (err) return process.exit(0);
-        console.log(stdo, stde);
+        process.exit(0);
       });
    }, 2000);
   });
 }
 
 export {
-  postDecipher
+  postDecrypt
 }
