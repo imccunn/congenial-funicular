@@ -9,11 +9,11 @@ function getInput(query) {
     let stdin = process.openStdin();
     let dataHandler = (char) => {
       switch (char) {
+        case '\r':
         case '\n':
           stdin.removeListener('data', dataHandler);
           break;
         default:
-          //process.stdout.write(rl.line);
           process.stdout.write('\x1B[2K\x1B[200D' + query);
           break;
       }
@@ -21,7 +21,6 @@ function getInput(query) {
     process.stdin.on('data', dataHandler);
     rl.question(query, (key) => {
       rl.close();
-      process.stdout.write('\x1B[2K\x1B[200D');
       resolve(key);
     });
   });
