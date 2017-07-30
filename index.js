@@ -1,26 +1,35 @@
 #!/usr/bin/env node
 
-import fs from 'fs';
+import { encryptFile, decryptFile } from './src/cryptFile';
+import { displayData, filterData } from './src/postCrypt';
+import config from './config/index';
+import getInput from './src/getInput';
+import prog from './src/parseArgs';
 
-import { encryptFile, decipherFile } from './src/cryptFile';
-import { postDecrypt } from './src/postCrypt';
+const program = prog.program;
+const action = prog.action;
 
-const args = process.argv;
-const secret = fs.readFileSync('./.secret', 'utf8');
-const actOpt = args[2];
-const source = args[3];
-const dest = args[4];
-const searchTerm = args[5];
-const searchTerm2 = args[6];
+const secret = program.key;
+const source = program.sourceFile;
+const dest = program.targetFile;
 
-const ENC = '-e';
-const DEC = '-d';
-
-switch (actOpt) {
-  case ENC : encryptFile(source, dest, secret);
-    break;
-  case DEC : postDecrypt(source, dest, secret, searchTerm, searchTerm2);
-    break;
-  default : throw new Error('Bad opts');
-    break;
+console.log('action: ', action);
+if (action === 'enc') {
+  getInput('Enter key: ')
+    .then(key => {
+      encryptFile(source, dest, key);
+    });
+} else if (action === 'dec') {
+  getInput('Enter key: ')
+    .then(key => {
+      return decryptFile(source, dest, key)
+    })
+    .then((data) => {
+      const searchTerm = program.queries[0]
+      const searchTerm2 = program.queries[1];
+      return displayData(filterData(data, searchTerm, searchTerm2));
+    });
+} else {
+  console.log('No action supplied.');
 }
+
