@@ -28,9 +28,8 @@ if (action === 'enc') {
     .then((data) => {
       const searchTerm = program.queries[0]
       const searchTerm2 = program.queries[1];
-      return displayData(filterData(data, searchTerm, searchTerm2));
+      displayData(filterData(data, searchTerm, searchTerm2));
     });
 } else {
   console.log('No action supplied.');
 }
-

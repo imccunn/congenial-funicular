@@ -14,7 +14,7 @@ function getInput(query) {
           stdin.removeListener('data', dataHandler);
           break;
         default:
-          process.stdout.write('\x1B[2K\x1B[200D' + query);
+          process.stdout.write(`\x1B[2K\x1B[200D${query}`);
           break;
       }
     }
@@ -27,4 +27,3 @@ function getInput(query) {
 }
 
 export default getInput;
-

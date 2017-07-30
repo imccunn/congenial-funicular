@@ -9,11 +9,12 @@ export {
 }
 
 function displayData(res) {
-  console.log(res);
+  process.stdout.write(res);
   setTimeout(function() {
-    exec('clear && exit', (err, stdo, stde) => {
-      process.exit(0);
-    });
+    process.stdout.write('\x1B[2K\x1B[200D');
+    // clear screen
+    // process.stdout.write('\u001b[H\u001b[2J');
+    process.exit(0);
   }, 2000);
 }
 
@@ -40,4 +41,3 @@ function filterData(data, searchTerm, searchTerm2) {
   }
   return found.length !== 1 ? `Unable to find data.` : `${found[0].pw} -- ${found[0].Email}`;
 }
-
