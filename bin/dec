@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+npm run build && \
+  ./build/index.js dec -s ./data/enc1 -t ./data/dec1 -q col1,col2
+

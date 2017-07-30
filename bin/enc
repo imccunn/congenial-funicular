@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+npm run build && \
+  ./build/index.js enc -s data/data.csv -t data/enc1
+

@@ -1,11 +1,11 @@
 {
-  "name": "radstuff",
-  "version": "0.1.0",
+  "name": "congenial-funicular",
+  "version": "0.1.2",
   "main": "index.js",
   "author": "Ian D. McCunn <ianmccunn@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "compile": "babel index.js src/* -d build/",
+    "compile": "babel index.js src/* config/* -d build/",
     "clean": "rm -rf build/",
     "build": "yarn run clean && yarn run compile"
   },
@@ -13,6 +13,10 @@
     "babel-cli": "^6.24.1",
     "babel-core": "^6.25.0",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
-    "babel-preset-env": "^1.6.0"
-  }
+    "babel-preset-env": "^1.6.0",
+    "commander": "^2.11.0",
+    "eslint": "^4.3.0"
+  },
+  "description": "Encrypt and decrypt CSV data.",
+  "repository": "https://github.com/imccunn/congenial-funicular.git"
 }
