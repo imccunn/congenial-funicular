@@ -10,7 +10,7 @@ export {
 
 function displayData(res) {
   process.stdout.write(res);
-  setTimeout(function() {
+  setTimeout(() => {
     process.stdout.write('\x1B[2K\x1B[200D');
     // clear screen
     // process.stdout.write('\u001b[H\u001b[2J');

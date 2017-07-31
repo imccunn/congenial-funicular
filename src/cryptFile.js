@@ -1,19 +1,23 @@
-import fs from 'fs';
 import crypto from 'crypto';
+import {readFile, writeFile} from './fileIO';
+
+export {
+  encryptFile,
+  decryptFile
+}
 
 function encryptFile(source, dest, secret) {
   console.log(`\nEncrypting file ${source} to file ${dest}.`)
-  fs.readFile(source, 'utf-8', function(err, data) {
-    if (err) return console.log(err);
-    console.log(`Source file size: ${data.length}`);
-    encryptData(data, secret)
-      .then((encrypted) => {
-        fs.writeFile(dest, encrypted, (err) => {
-          if (err) return console.log(err);
-          console.log(`File encrypted. Size: ${encrypted.length}`);
-         });
-      });
-  });
+  return readFile(source)
+    .then(data => encryptData(data, secret))
+    .then(encrypted => writeFile(dest, encrypted))
+    .catch(e => console.error(e));
+}
+
+function decryptFile(source, dest, secret) {
+  return readFile(source)
+    .then(data => decryptData(data, secret))
+    .catch(e => { console.error(e); });
 }
 
 function encryptData(data, secret) {
@@ -25,6 +29,7 @@ function encryptData(data, secret) {
       if (d) encrypted += d.toString('hex');
     });
     cipher.on('end', () => {
+      console.log(`Encrypted size: ${encrypted.length}`);
       resolve(encrypted);
     });
     cipher.on('error', (e) => {
@@ -32,18 +37,6 @@ function encryptData(data, secret) {
     })
     cipher.write(data);
     cipher.end();
-  });
-}
-
-function decryptFile(source, dest, secret) {
-  return new Promise((resolve, reject) => {
-    console.log(`Decrypting file  ${source}.`);
-    fs.readFile(source, 'utf8', (err, data) => {
-      if (err) return reject(err);
-      decryptData(data, secret)
-        .then(decrypted => resolve)
-        .catch(e => reject);
-    });
   });
 }
 
@@ -68,9 +61,4 @@ function decryptData(data, secret) {
     decipher.write(data, 'hex');
     decipher.end();
   });
-}
-
-export {
-  encryptFile,
-  decryptFile
 }
