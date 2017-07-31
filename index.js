@@ -19,7 +19,7 @@ if (action === 'enc') {
   console.log('Encrypting file.');
   getInput('Enter key: ')
     .then(key => {
-      encryptFile(source, dest, key);
+      return encryptFile(source, dest, key);
     });
 } else if (action === 'dec') {
   console.log('Decrypting file.');
