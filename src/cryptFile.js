@@ -11,7 +11,7 @@ function encryptFile(source, dest, secret) {
   return readFile(source)
     .then(data => encryptData(data, secret))
     .then(encrypted => writeFile(dest, encrypted))
-    .catch(e => console.error(e));
+    .catch(e => { console.error(e); });
 }
 
 function decryptFile(source, dest, secret) {
