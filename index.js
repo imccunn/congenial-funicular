@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 
 const cryptFile = require('./src/cryptFile');
-const { encryptFile, decryptFile } = cryptFile;
 const postCrypt = require('./src/postCrypt');
-const { displayData, filterData } = postCrypt;
 const config = require('./config');
 const getInput = require('./src/getInput');
 const prog = require('./src/parseArgs');
+const { encryptFile, decryptFile } = cryptFile;
+const { displayData, filterData } = postCrypt;
 
 const program = prog.program;
 const action = prog.action;
