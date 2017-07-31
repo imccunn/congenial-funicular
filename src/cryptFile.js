@@ -27,6 +27,9 @@ function encryptData(data, secret) {
     cipher.on('end', () => {
       resolve(encrypted);
     });
+    cipher.on('error', (e) => {
+      reject(err);
+    })
     cipher.write(data);
     cipher.end();
   });
@@ -37,26 +40,33 @@ function decryptFile(source, dest, secret) {
     console.log(`Decrypting file  ${source}.`);
     fs.readFile(source, 'utf8', (err, data) => {
       if (err) return reject(err);
-      let decipher = crypto.createDecipher('aes256', secret);
-      let decrypted = '';
-      decipher.on('readable', () => {
-        var d = decipher.read();
-        if (d) {
-          decrypted += d.toString('utf8');
-        }
-      });
-      decipher.on('end', () => {
-        console.log('Decipher complete.');
-        resolve(decrypted);
-      });
-      decipher.on('error', (e) => {
-        console.error('Bad decrypt.');
-        reject('Bad decrypt.');
-        process.exit(1);
-      });
-      decipher.write(data, 'hex');
-      decipher.end();
+      decryptData(data, secret)
+        .then(decrypted => resolve)
+        .catch(e => reject);
     });
+  });
+}
+
+function decryptData(data, secret) {
+  return new Promise((resolve, reject) => {
+    let decipher = crypto.createDecipher('aes256', secret);
+    let decrypted = '';
+    decipher.on('readable', () => {
+      var d = decipher.read();
+      if (d) {
+        decrypted += d.toString('utf8');
+      }
+    });
+    decipher.on('end', () => {
+      console.log('Decipher complete.');
+      resolve(decrypted);
+    });
+    decipher.on('error', (e) => {
+      reject('Bad decrypt.');
+      process.exit(1);
+    });
+    decipher.write(data, 'hex');
+    decipher.end();
   });
 }
 
