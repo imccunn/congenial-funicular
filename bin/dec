@@ -1,5 +1,3 @@
 #!/usr/bin/env sh
 
-npm run build && \
-  ./build/index.js dec -s ./data/enc -q site2
-
+./index.js dec -s ./data/enc -q site2

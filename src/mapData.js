@@ -15,14 +15,11 @@ function mapRowsToObjs(csv) {
     .map(r => r.split(',').splice(0, fields.length))
     .map((row) => {
       return row.reduce((p, c, i) => {
-        return {
-          ...p,
-          [fields[i]]: c
-        };
+        return Object.assign({}, p, {[fields[i]]: c});
       }, {});
     });
 }
 
-export {
+module.exports = {
   mapRowsToObjs
-}
+};

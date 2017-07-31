@@ -1,4 +1,9 @@
-import fs from 'fs';
+const fs = require('fs');
+
+module.exports = {
+  readFile,
+  writeFile
+};
 
 function readFile(path) {
   return new Promise((resolve, reject) => {
@@ -18,9 +23,4 @@ function writeFile(path, data) {
       resolve();
     });
   });
-}
-
-export {
-  readFile,
-  writeFile
 }

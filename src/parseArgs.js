@@ -1,5 +1,5 @@
-import program from 'commander';
-import config from '../config/index';
+const program = require('commander');
+const config = require('../config');
 
 let cmdVal = null;
 program
@@ -25,8 +25,7 @@ function val(v) {
   return v;
 }
 
-export default {
+module.exports = {
   action: cmdVal,
   program
-};
- 
+}; 

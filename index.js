@@ -1,10 +1,12 @@
 #!/usr/bin/env node
 
-import { encryptFile, decryptFile } from './src/cryptFile';
-import { displayData, filterData } from './src/postCrypt';
-import config from './config/index';
-import getInput from './src/getInput';
-import prog from './src/parseArgs';
+const cryptFile = require('./src/cryptFile');
+const { encryptFile, decryptFile } = cryptFile;
+const postCrypt = require('./src/postCrypt');
+const { displayData, filterData } = postCrypt;
+const config = require('./config');
+const getInput = require('./src/getInput');
+const prog = require('./src/parseArgs');
 
 const program = prog.program;
 const action = prog.action;

@@ -1,12 +1,11 @@
 
-import { decryptFile } from './cryptFile';
-import { mapRowsToObjs } from './mapData';
-import { exec } from 'child_process';
+const mapRowsToObjs = require('./mapData').mapRowsToObjs;
+const exec = require('child_process').exec;
 
-export {
+module.exports = {
   displayData,
   filterData
-}
+};
 
 function displayData(res) {
   process.stdout.write(res);

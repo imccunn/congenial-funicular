@@ -1,4 +1,4 @@
-import readline from 'readline';
+const readline = require('readline');
 
 function getInput(query) {
   return new Promise((resolve, reject) => {
@@ -26,4 +26,4 @@ function getInput(query) {
   });
 }
 
-export default getInput;
+module.exports = getInput;

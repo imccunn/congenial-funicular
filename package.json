@@ -5,15 +5,9 @@
   "author": "Ian D. McCunn <ianmccunn@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "compile": "babel index.js src/* config/* -d build/",
-    "clean": "rm -rf build/",
-    "build": "yarn run clean && yarn run compile"
+
   },
   "dependencies": {
-    "babel-cli": "^6.24.1",
-    "babel-core": "^6.25.0",
-    "babel-plugin-transform-object-rest-spread": "^6.23.0",
-    "babel-preset-env": "^1.6.0",
     "commander": "^2.11.0",
     "eslint": "^4.3.0"
   },

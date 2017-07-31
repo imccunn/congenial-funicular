@@ -1,10 +1,11 @@
-import crypto from 'crypto';
-import {readFile, writeFile} from './fileIO';
+const crypto = require('crypto');
+const fileIO = require('./fileIO');
+const { readFile, writeFile } = fileIO;
 
-export {
+module.exports = {
   encryptFile,
   decryptFile
-}
+};
 
 function encryptFile(source, dest, secret) {
   console.log(`\nEncrypting file ${source} to file ${dest}.`)
