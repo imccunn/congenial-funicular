@@ -25,13 +25,14 @@ if (action === 'enc') {
   console.log('Decrypting file.');
   getInput('Enter key: ')
     .then(key => {
-      return decryptFile(source, dest, key)
+      return decryptFile(source, dest, key);
     })
     .then((data) => {
-      const searchTerm = program.queries[0]
+      const searchTerm = program.queries[0];
       const searchTerm2 = program.queries[1];
       displayData(filterData(data, searchTerm, searchTerm2));
     });
 } else {
   console.log('No action supplied.');
 }
+
