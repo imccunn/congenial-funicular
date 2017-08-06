@@ -23,3 +23,4 @@ function mapRowsToObjs(csv) {
 module.exports = {
   mapRowsToObjs
 };
+
